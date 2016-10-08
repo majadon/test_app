@@ -29,6 +29,7 @@ class ArticleCommentsController < ApplicationController
   # POST /article_comments.json
   def create
     @article_comment = ArticleComment.new(article_comment_params)
+    @article_comment.user = current_user
 
     respond_to do |format|
       if @article_comment.save
