@@ -1,19 +1,24 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = ArticleComment -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => ArticleComment %></h1>
+</div>
 
-<p>
-  <strong>Content:</strong>
-  <%= @article_comment.content %>
-</p>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:content) %></dt>
+      <dd><pre class="prettyprint"><%= @article_comment.content %></pre></dd>
+  </dl>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @article_comment.user %>
-</p>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              article_comments_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_article_comment_path(@article_comment), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              article_comment_path(@article_comment),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
 
-<p>
-  <strong>Article:</strong>
-  <%= @article_comment.article %>
-</p>
-
-<%= link_to 'Edit', edit_article_comment_path(@article_comment) %> |
-<%= link_to 'Back', article_comments_path %>
