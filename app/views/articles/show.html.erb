@@ -1,24 +1,28 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Article -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Article %></h1>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:title) %></dt>
+      <dd><pre class="prettyprint"><%= @article.title %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:content) %></dt>
+      <dd><pre class="prettyprint"><%= @article.content %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:published) %></dt>
+      <dd><pre class="prettyprint"><%= @article.published %></pre></dd>
+  </dl>
+</div>
 
-<p>
-  <strong>Content:</strong>
-  <%= @article.content %>
-</p>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              articles_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_article_path(@article), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              article_path(@article),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
 
-<p>
-  <strong>Published:</strong>
-  <%= @article.published %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @article.user %>
-</p>
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
